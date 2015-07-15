@@ -40,9 +40,19 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       # within release_path do
-      #   execute :rake, 'cache:clear'
+      #   execute :rake, 'precompile:assets'
       # end
     end
   end
+
+  task :assets_precompile do
+    on roles(:web) do
+      within release_path do
+        execute :rake, "assets:precompile RAILS_ENV=production"
+      end
+    end
+  end
+
+  after :publishing, 'deploy:assets_precompile'
 
 end

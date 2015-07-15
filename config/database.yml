@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  database: cap1_development
+  username: hernus
+  password: applic01
+  host: localhost
+
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  database: cap1_test
+  username: hernus
+  password: applic01
+  host: localhost
+
+
+production:
+  database: cap1_production
+  username: cap1
+  password: <%= ENV['CAP1_DATABASE_PASSWORD'] %>

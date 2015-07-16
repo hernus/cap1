@@ -3,8 +3,8 @@ development:
   encoding: utf8
   pool: 5
   database: cap1_development
-  username: hernus
-  password: applic01
+  username: dbuser
+  password: db123456
   host: localhost
 
 
@@ -13,8 +13,8 @@ test:
   encoding: utf8
   pool: 5
   database: cap1_test
-  username: hernus
-  password: applic01
+  username: dbuser
+  password: db123456
   host: localhost
 
 

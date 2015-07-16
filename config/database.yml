@@ -20,5 +20,10 @@ test:
 
 production:
   database: cap1_production
-  username: cap1
-  password: <%= ENV['CAP1_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  host: localhost
+  username: dbuser
+  password: db123456
+  # password: <%= ENV['CAP1_DATABASE_PASSWORD'] %>

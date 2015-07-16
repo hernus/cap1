@@ -39,14 +39,14 @@ set :repo_url, 'https://github.com/hernus/cap1.git'
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'precompile:assets'
-      # end
-    end
-  end
+  # after :restart, :clear_cache do
+  #   on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #     # Here we can do anything such as:
+  #     # within release_path do
+  #     #   execute :rake, 'precompile:assets'
+  #     # end
+  #   end
+  # end
 
   task :assets_precompile do
     on roles(:web) do

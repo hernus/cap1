@@ -9,7 +9,7 @@ set :repo_url, 'https://github.com/hernus/cap1.git'
 
 # Default deploy_to directory is /var/www/my_app_name
  set :deploy_to, '/sites/cap1'
- deploy_user = 'vagrant'
+ deploy_user = 'ubuntu'
  chef_repo = "https://github.com/hernus/chef_for_romeo_v1.git"
 
 
@@ -58,17 +58,24 @@ namespace :deploy do
 
   task :site_symlink do
     on roles(:web) do
-      if remote_path_exists?("/etc/nginx/sites-enabled/default") do
+      if remote_path_exists?("/etc/nginx/sites-enabled/default") 
         execute :sudo, :rm, "/etc/nginx/sites-enabled/default"
       end
-      unless remote_path_exists?("/etc/nginx/sites-enabled/romeo") do
+      unless remote_path_exists?("/etc/nginx/sites-enabled/romeo") 
         execute :sudo, :ln, "-s /etc/nginx/sites-available/romeo /etc/nginx/sites-enabled/romeo"
       end
     end
   end
 
+  task :nginx_reload do
+    on roles(:web) do
+      invoke "deploy:site_symlink"
+      execute :sudo, "nginx -s reload"
+    end     
+  end
+
   after :publishing, 'deploy:assets_precompile'
-  after :publishing, 'deploy:site_symlink'
+  after :assets_precompile, 'deploy:nginx_reload'
 
 end
 

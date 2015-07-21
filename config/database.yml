@@ -14,7 +14,7 @@ test:
   pool: 5
   database: cap1_test
   username: dbuser
-  password: dbuser123456
+  password: db123456
   host: localhost
 
 
